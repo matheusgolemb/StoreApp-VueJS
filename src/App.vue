@@ -3,7 +3,7 @@
     <main-menu :loginInfo="loginValid"></main-menu>
     <!-- Here I also tried to bind the loginValid variable, so then, after the login is successfull i would change the value to true. So the LI in the header would be different after user logged in. Like Milad asked in the coursework steps 2. and 3. -->
     <div class="container-fluid">
-      <router-view @getUserData="getLoginData" :UserData="UserData" @getCartData="cartData" :cartList="cartList"></router-view>
+      <router-view @getUserData="getLoginData" :UserData="UserData" @newCart="updateCart" :cartList="cartList"></router-view>
     </div>
   </div>
 </template>
@@ -38,8 +38,11 @@ export default {
       }
     },
     cartData(cartList){
-      console.log(cartList)
+      // console.log(cartList)
       this.cartList = cartList;
+    },
+    updateCart(newVal){
+      this.cartList = newVal
     }
   }
 }

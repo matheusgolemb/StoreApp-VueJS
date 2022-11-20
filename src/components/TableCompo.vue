@@ -10,7 +10,7 @@
                     <th>Product Name</th>
                     <th v-show="shopFlag" colspan="2">Price</th>
                     <th v-show="!shopFlag" colspan="1">Price</th>
-                    <th v-show="!shopFlag">amount</th>
+                    <th v-show="!shopFlag">Amount</th>
                     <th v-show="!shopFlag">Total</th>
                     <th v-show="!shopFlag">Tax</th>
                     <th v-show="!shopFlag">Option</th>
@@ -73,6 +73,8 @@ export default {
         },
         checkout(){
             this.$emit('cartList', this.shop);
+            // console.log('Information from TableCompo ')
+            // console.log(this.shop)
             this.$router.push('/cart')
         }
     }

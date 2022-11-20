@@ -19,7 +19,7 @@
                     </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                        <tr  class="table-primary" v-for="(product,idx) in shoppingList" :key="idx" >
+                        <tr  class="table-primary" v-for="(product,idx) in cartList" :key="idx" >
                             <td scope="row">{{product[1].pName}}</td>
                             <td>{{product[1].price}}</td>
                             <td>
@@ -54,16 +54,31 @@ export default {
     props:['cartList'],
     data(){
         return{
-
+            total:0,
+            cartMap:this.cartList,
+        }
+    },
+    watch: {
+        cartMap: {
+        handler() {
+            this.calTotal()
+        },
+        deep: true
         }
     },
     methods:{
-        sendShopList(){
-            this.$emit('getCartData', this.cartList)
-        }
+        deletesh(pId){
+            this.$emit('deletesh',pId);
+        },
+        calTotal(){
+            this.total = 0;
+            this.cartMap.forEach((product)=>{
+                this.total += product.totalWtax();
+            })
+        },
     },
     mounted(){
-        this.sendShopList()
+        this.calTotal()
     }
 }
 </script>

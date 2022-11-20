@@ -57,7 +57,6 @@ export default {
                 selectedProduct = new ProductClass(product.pId,product.pName,product.price);
             }
             this.shoppingList.set(product.pId,selectedProduct);
-            this.$emit('getCartData', this.shoppingList)
             this.calTotal();   
         },
         deleteEv(pId){
@@ -65,8 +64,10 @@ export default {
             this.calTotal();
         },
         updateCart(cartList){
-            this.cartList = cartList
-            console.log(cartList)
+            this.cartList = this.shoppingList
+            this.$emit('newCart', cartList)
+            // console.log('Information from ProductPage: ')
+            // console.log(cartList)
         }
     },
     mounted(){
