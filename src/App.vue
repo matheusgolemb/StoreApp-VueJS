@@ -1,26 +1,35 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <main-menu :loginInfo="loginValid"></main-menu>
+    <div class="container-fluid">
+      <router-view @getUserData="getLoginData(UserData)"></router-view>
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MainMenu from './components/MainMenu.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    MainMenu
+  },
+  props:['UserData'],
+  data(){
+    return{
+      // UserData:'',
+    }
+  },
+  methods:{
+    getLoginData(UserData){
+      console.log(UserData)
+      // this.UserData = UserData;
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
