@@ -1,0 +1,69 @@
+<template>
+    <div>
+        <h1>Shopping Cart page</h1>
+        <!-- {{shoppingList}} -->
+        <div class="table-responsive">
+            <table class="table table-striped
+            table-hover	
+            table-borderless
+            table-primary
+            align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Amount</th>
+                        <th>Total</th>
+                        <th>Tax</th>
+                        <th>Option</th>
+                    </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <tr  class="table-primary" v-for="(product,idx) in shoppingList" :key="idx" >
+                            <td scope="row">{{product[1].pName}}</td>
+                            <td>{{product[1].price}}</td>
+                            <td>
+                                {{product[1].amount}}
+                            </td>
+                            <td>
+                                {{product[1].total()}}
+                            </td>
+                            <td>
+                                {{product[1].totalWtax()}}
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-outline-danger" @click="deletesh(product[1].pId)">X</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot v-show="!shopFlag">
+                        <tr>
+                            <td colspan="3">Total: {{total}}</td>
+                            <td colspan="3">
+                                <button type="button" class="btn btn-outline-success" @click="checkout()">Checkout</button>
+                            </td>
+                        </tr>                    
+                    </tfoot>
+            </table>
+        </div>
+    </div>
+</template>
+<script>
+export default {
+    name: 'CartPage',
+    props:['cartList'],
+    data(){
+        return{
+
+        }
+    },
+    methods:{
+        sendShopList(){
+            this.$emit('getCartData', this.cartList)
+        }
+    },
+    mounted(){
+        this.sendShopList()
+    }
+}
+</script>

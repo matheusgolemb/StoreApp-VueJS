@@ -8,7 +8,7 @@
                     <table-compo @buy="buy" :shopFlag="true" :products="products"></table-compo>
                 </div>
                 <div class="col-8">
-                    <table-compo @deletesh="deleteEv" :total="total" :shopFlag="false" :shopping="shoppingList"></table-compo>
+                    <table-compo @deletesh="deleteEv" :total="total" :shopFlag="false" :shopping="shoppingList" @cartList="updateCart"></table-compo>
                 </div>
                     
             </div>
@@ -24,10 +24,12 @@ export default {
     components:{
         TableCompo
     },
+    props:['shopping'],
     data(){
         return{
             products:new Array(),
             shoppingList:new Map(),
+            cartList:'',
             total:0
         }
     },
@@ -55,11 +57,16 @@ export default {
                 selectedProduct = new ProductClass(product.pId,product.pName,product.price);
             }
             this.shoppingList.set(product.pId,selectedProduct);
+            this.$emit('getCartData', this.shoppingList)
             this.calTotal();   
         },
         deleteEv(pId){
             this.shoppingList.delete(pId);
             this.calTotal();
+        },
+        updateCart(cartList){
+            this.cartList = cartList
+            console.log(cartList)
         }
     },
     mounted(){

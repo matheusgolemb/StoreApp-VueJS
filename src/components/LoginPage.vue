@@ -17,6 +17,7 @@ export default {
             userInfo: "",
             uName:'',
             uPass:'',
+            loginValid: false,
         }
     },
     methods:{
@@ -32,18 +33,25 @@ export default {
                 console.log(e)
             })
         },
-        doLogin(UserData){
+        doLogin(){
+            this.uName = "dfilchakov0"
+            this.uPass = "yJqPtEVqR"
+            // Remember to delete pass and user. Just to dont keep typing every login
+
             this.loginValid = false;
             this.usersData.forEach((user)=>{
                 if(this.uName==user.userName && this.uPass == user.password){
                     this.userInfo = new UserClass(user.customerId, user.userName, user.first_name, user.last_name, user.email)
                     this.loginValid = true
-                    UserData= this.userInfo.toObject();
-                    this.$emit('getUserData', UserData);
+                    let UserData = this.userInfo.toObject();
+                    this.$emit('getUserData', UserData, this.loginValid);
                     // console.log(UserData)
                     this.$router.push('/')
                 }
             })
+            if(!this.loginValid){
+                this.$emit('getUserData', this.userInfo, this.loginValid)
+            }
         }
     },
     mounted(){

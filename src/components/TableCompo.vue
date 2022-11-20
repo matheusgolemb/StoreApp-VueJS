@@ -44,7 +44,12 @@
                     </tr>
                 </tbody>
                 <tfoot v-show="!shopFlag">
-                    Total: {{total}}
+                    <tr>
+                        <td colspan="3">Total: {{total}}</td>
+                        <td colspan="3">
+                            <button type="button" class="btn btn-outline-success" @click="checkout()">Checkout</button>
+                        </td>
+                    </tr>                    
                 </tfoot>
         </table>
     </div>
@@ -65,6 +70,10 @@ export default {
         },
         deletesh(pId){
             this.$emit('deletesh',pId);
+        },
+        checkout(){
+            this.$emit('cartList', this.shop);
+            this.$router.push('/cart')
         }
     }
 }
