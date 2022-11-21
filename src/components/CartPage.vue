@@ -71,11 +71,20 @@ export default {
             this.$emit('deletesh',pId);
         },
         calTotal(){
-            this.total = 0;
-            this.cartMap.forEach((product)=>{
-                this.total += product.totalWtax();
-            })
+            if(this.cartMap.size>0){
+                this.total = 0;
+                this.cartMap.forEach((product)=>{
+                    this.total += product.totalWtax();
+                })
+            }
+            this.total = this.total.toFixed(2)
         },
+        checkout(){
+            this.$emit('cartList', this.cartMap);
+            // console.log('Information from TableCompo ')
+            // console.log(this.cartMap)
+            this.$router.push('/product')
+        }
     },
     mounted(){
         this.calTotal()

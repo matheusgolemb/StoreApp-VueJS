@@ -5,10 +5,10 @@
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                 <li v-show="!loginInfo"  class="nav-item">
-                    <router-link active-class="active" class="nav-link" to="/login">Login Page</router-link>
+                    <router-link active-class="active" class="nav-link" to="/">Login Page</router-link>
                 </li>
                 <li v-show="loginInfo" class="nav-item">
-                    <router-link active-class="active" class="nav-link" to="/" aria-current="page">Home</router-link>
+                    <router-link active-class="active" class="nav-link" to="/home" aria-current="page">Home</router-link>
                 </li>
                 <li v-show="loginInfo" class="nav-item">
                     <router-link active-class="active" class="nav-link" to="/product">Product Page</router-link>

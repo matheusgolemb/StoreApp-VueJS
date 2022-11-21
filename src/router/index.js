@@ -5,7 +5,7 @@ import LoginPage from '../components/LoginPage.vue';
 import CartPage from '../components/CartPage.vue'
 const routes = [
     {
-        path:'/',
+        path:'/home',
         name:'home-page',
         component:HomePage
     },
@@ -15,7 +15,7 @@ const routes = [
         component:ProductPage,
     },
     {
-        path: '/login',
+        path: '/',
         name: 'login-page',
         component: LoginPage
     },

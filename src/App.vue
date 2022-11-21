@@ -28,7 +28,6 @@ export default {
       // console.log('UserData: ')
       // console.log(UserData)
       // console.log(loginValid)
-      // Here I am trying to console log the information of the logged user. I tried to send this info by the LoginPage component in the doLogin() function. But, as u can see the console log is returning empty.
       if(loginValid){
         this.loginValid = loginValid;
         this.UserData = UserData;
@@ -37,12 +36,9 @@ export default {
         console.log("Failed Login")
       }
     },
-    cartData(cartList){
-      // console.log(cartList)
-      this.cartList = cartList;
-    },
     updateCart(newVal){
       this.cartList = newVal
+      console.log(this.cartList)
     }
   }
 }

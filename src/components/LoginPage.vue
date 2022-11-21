@@ -46,7 +46,7 @@ export default {
                     let UserData = this.userInfo.toObject();
                     this.$emit('getUserData', UserData, this.loginValid);
                     // console.log(UserData)
-                    this.$router.push('/')
+                    this.$router.push('/home')
                 }
             })
             if(!this.loginValid){

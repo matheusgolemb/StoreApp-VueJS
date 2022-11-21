@@ -11,6 +11,7 @@
                     <th v-show="shopFlag" colspan="2">Price</th>
                     <th v-show="!shopFlag" colspan="1">Price</th>
                     <th v-show="!shopFlag">Amount</th>
+                    <th v-show="!shopFlag">Shippment</th>
                     <th v-show="!shopFlag">Total</th>
                     <th v-show="!shopFlag">Tax</th>
                     <th v-show="!shopFlag">Option</th>
@@ -33,6 +34,17 @@
                             {{product[1].amount}}
                         </td>
                         <td>
+                            <!-- 
+                                I dont know why the options are not populating the select tag.
+                                I tested the select and options outside the td and it was working
+                             -->
+                            <select v-model="selCity">
+                                <option value="x.city" v-for="(x,idx) in cities" :key="idx">
+                                    {{x.city}}
+                                </option>
+                            </select>
+                        </td>
+                        <td>
                             {{product[1].total()}}
                         </td>
                         <td>
@@ -46,7 +58,7 @@
                 <tfoot v-show="!shopFlag">
                     <tr>
                         <td colspan="3">Total: {{total}}</td>
-                        <td colspan="3">
+                        <td colspan="4">
                             <button type="button" class="btn btn-outline-success" @click="checkout()">Checkout</button>
                         </td>
                     </tr>                    
@@ -58,10 +70,11 @@
 <script>
 export default {
     name:'TableCompo',
-    props:['products','shopping','shopFlag','total'],
+    props:['products','shopping','shopFlag','total', 'cities'],
     data(){
         return{
             shop:this.shopping,
+            selCity:''
         }
     },
     methods:{
@@ -72,10 +85,11 @@ export default {
             this.$emit('deletesh',pId);
         },
         checkout(){
+
             this.$emit('cartList', this.shop);
             // console.log('Information from TableCompo ')
             // console.log(this.shop)
-            this.$router.push('/cart')
+            // this.$router.push('/cart')
         }
     }
 }

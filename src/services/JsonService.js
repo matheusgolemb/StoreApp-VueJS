@@ -7,6 +7,9 @@ class JsonService{
     loadUsers(){
         return http.get('data/customers.json')
     }
+    loadCities(){
+        return http.get('data/cities.json')
+    }
 }
 
 export default new JsonService();
