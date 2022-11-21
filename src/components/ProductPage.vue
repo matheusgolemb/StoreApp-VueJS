@@ -5,10 +5,10 @@
             <h1>Product page</h1>
             <div class="row justify-content-start align-items-start g-2">
                 <div class="col-4">
-                    <table-compo @buy="buy" :shopFlag="true" :products="products" :cities="cities"></table-compo>
+                    <table-compo @buy="buy" :shopFlag="true" :products="products" ></table-compo>
                 </div>
                 <div class="col-8">
-                    <table-compo @deletesh="deleteEv" :total="total" :shopFlag="false" :shopping="shoppingList" @cartList="updateCart"></table-compo>
+                    <table-compo @deletesh="deleteEv" :total="total" :shopFlag="false" :shopping="shoppingList" @cartList="updateCart" :cities="cities" @shipTax="shipTax"></table-compo>
                 </div>
                     
             </div>
@@ -45,6 +45,7 @@ export default {
             JsonService.loadCities()
             .then((res)=>{
                 this.cities = res.data;
+                this.$emit('getCities', this.cities)
             })
             .catch((e)=>{
                 console.log('Error loading cities.json')
@@ -56,7 +57,7 @@ export default {
             this.shoppingList.forEach((product)=>{
                 this.total += product.totalWtax();
             })
-            this.total = this.total.toFixed(2)
+            this.total = parseFloat(this.total.toFixed(2)) 
         },
         buy(idx){
             let product = this.products[idx];
@@ -79,6 +80,9 @@ export default {
             this.$emit('newCart', cartList)
             // console.log('Information from ProductPage: ')
             // console.log(cartList)
+        },
+        calshipTax(shipTax){
+            this.$emit('calshipTax', shipTax)
         }
     },
     mounted(){

@@ -34,9 +34,6 @@ export default {
             })
         },
         doLogin(){
-            this.uName = "dfilchakov0"
-            this.uPass = "yJqPtEVqR"
-            // Remember to delete pass and user. Just to dont keep typing every login
 
             this.loginValid = false;
             this.usersData.forEach((user)=>{

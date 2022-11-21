@@ -14,6 +14,7 @@
                         <th>Price</th>
                         <th>Amount</th>
                         <th>Total</th>
+                        <th>Shippment</th>
                         <th>Tax</th>
                         <th>Option</th>
                     </tr>
@@ -24,6 +25,13 @@
                             <td>{{product[1].price}}</td>
                             <td>
                                 {{product[1].amount}}
+                            </td>
+                            <td>
+                                <select v-model="selCity">
+                                    <!-- I couldnt populate the options -->
+                                    <option value="" disabled="disabled">Select city</option>
+                                    <option v-for="(c, idx) in cities" :key="idx" :value="c.prov">{{c.prov}}, {{c.city}}</option>
+                                </select>  
                             </td>
                             <td>
                                 {{product[1].total()}}
@@ -38,7 +46,8 @@
                     </tbody>
                     <tfoot v-show="!shopFlag">
                         <tr>
-                            <td colspan="3">Total: {{total}}</td>
+                            <!-- couldnt make it update automatically and get the shipTax value. Delete is not working also -->
+                            <td colspan="4">Total: {{total}}</td>
                             <td colspan="3">
                                 <button type="button" class="btn btn-outline-success" @click="checkout()">Checkout</button>
                             </td>
@@ -51,7 +60,7 @@
 <script>
 export default {
     name: 'CartPage',
-    props:['cartList'],
+    props:['cartList', 'shipTax', 'cities'],
     data(){
         return{
             total:0,
